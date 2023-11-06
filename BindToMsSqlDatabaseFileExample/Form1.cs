@@ -1,6 +1,9 @@
 ﻿using DevExpress.DashboardCommon;
 using DevExpress.DataAccess.ConnectionParameters;
+using DevExpress.DataAccess.ObjectBinding;
 using DevExpress.DataAccess.Sql;
+using DevExpress.Xpo;
+using System.IO;
 
 namespace BindToMsSqlDatabaseFileExample {
     public partial class Form1 : DevExpress.XtraEditors.XtraForm {
@@ -9,10 +12,66 @@ namespace BindToMsSqlDatabaseFileExample {
             dashboardDesigner1.CreateRibbon();
             Dashboard currentDashboard = CreateDashboard();
             BindDataSource(currentDashboard, CreateDataSource());
+            currentDashboard.DataSources.Add(CreateObjectDataSource1());
+            currentDashboard.DataSources.Add(CreateObjectDataSource2());
+
             dashboardDesigner1.Dashboard = currentDashboard;
             dashboardDesigner1.DataSourceWizard.SqlWizardSettings.QueryBuilderDiagramView = false;
         }
+        DashboardObjectDataSource CreateObjectDataSource()
+        {
 
+            DashboardObjectDataSource objectDataSource = new DashboardObjectDataSource();
+            objectDataSource.DataSource = typeof(MyCustomDataClass);
+            objectDataSource.DataMember = "RefreshData";
+            objectDataSource.Parameters.Add(
+               new DevExpress.DataAccess.ObjectBinding.Parameter(
+                   "Year",
+                   typeof(DevExpress.DataAccess.Expression),
+                   new DevExpress.DataAccess.Expression("[Parameters.Year]", typeof(int))));
+            objectDataSource.Constructor = ObjectConstructorInfo.Default;
+            objectDataSource.Fill();
+            return objectDataSource;
+
+
+        }
+        DashboardObjectDataSource CreateObjectDataSource2()
+        {
+
+            DashboardObjectDataSource objectDataSource = new DashboardObjectDataSource();
+            objectDataSource.DataSource = typeof(MonthData);
+            objectDataSource.DataMember = "GetData";
+            objectDataSource.Parameters.Add(
+               new DevExpress.DataAccess.ObjectBinding.Parameter(
+                   "Year",
+                   typeof(DevExpress.DataAccess.Expression),
+                   new DevExpress.DataAccess.Expression("[Parameters.Year]", typeof(int))));
+            objectDataSource.Constructor = ObjectConstructorInfo.Default;
+            objectDataSource.Fill();
+            return objectDataSource;
+
+
+        }
+        DashboardObjectDataSource CreateObjectDataSource1()
+        {
+
+            DashboardObjectDataSource objDataSource5 = new DashboardObjectDataSource("Test", typeof(TestData));
+            objDataSource5.DataMember = "GetData";
+            objDataSource5.Parameters.Add(
+                new DevExpress.DataAccess.ObjectBinding.Parameter(
+                    "Count",
+                    typeof(DevExpress.DataAccess.Expression),
+                    new DevExpress.DataAccess.Expression("[Parameters.Count]", typeof(int))));
+            return objDataSource5;
+            //DashboardObjectDataSource objectDataSource = new DashboardObjectDataSource();
+            //objectDataSource.DataSource = typeof(MyCustomDataClass);
+            ////objectDataSource.DataMember = "RefreshData";
+            //objectDataSource.Constructor = ObjectConstructorInfo.Default;
+            //objectDataSource.Fill();
+            //return objectDataSource;
+
+
+        }
         private void BindDataSource(Dashboard dashboard, DashboardSqlDataSource dashboardSqlDataSource) {
             dashboard.DataSources.Add(dashboardSqlDataSource);
             foreach (var item in dashboard.Items) {
@@ -23,13 +82,27 @@ namespace BindToMsSqlDatabaseFileExample {
                 }
             }
         }
-
+        public static UnitOfWork UoW;
         private DashboardSqlDataSource CreateDataSource() {
             CustomStringConnectionParameters connectionParameters = new CustomStringConnectionParameters();
             connectionParameters.ConnectionString =
                 @"XpoProvider=MSSqlServer;Data Source=(LocalDB)\MSSQLLocalDB;" +
                 @"AttachDbFilename=|DataDirectory|\NW19.mdf;" +
                 @"Integrated Security=True";
+
+
+            var Dal = XpoDefault.GetDataLayer(connectionParameters.ConnectionString, DevExpress.Xpo.DB.AutoCreateOption.None);
+            UoW = new UnitOfWork(Dal);
+            try
+            {
+                var sp= File.ReadAllText("StoredProcedure.sql");
+                UoW.ExecuteNonQuery(sp);
+            }
+            catch (System.Exception ex)
+            {
+                var realex = ex;
+                //throw;
+            }
             DashboardSqlDataSource sqlDataSource =
                 new DashboardSqlDataSource("NW19 SQL Server Database File", connectionParameters);
             // Comment out two lines to use CustomSqlQuery and SQL string expression.

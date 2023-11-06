@@ -50,42 +50,47 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Charts.v21.2.Core" />
-    <Reference Include="DevExpress.Dashboard.v21.2.Core" />
-    <Reference Include="DevExpress.Dashboard.v21.2.Win" />
-    <Reference Include="DevExpress.Data.v21.2" />
-    <Reference Include="DevExpress.DataAccess.v21.2" />
-    <Reference Include="DevExpress.DataAccess.v21.2.UI" />
-    <Reference Include="DevExpress.Map.v21.2.Core" />
-    <Reference Include="DevExpress.Office.v21.2.Core" />
-    <Reference Include="DevExpress.PivotGrid.v21.2.Core" />
-    <Reference Include="DevExpress.Printing.v21.2.Core" />
-    <Reference Include="DevExpress.RichEdit.v21.2.Core" />
-    <Reference Include="DevExpress.Sparkline.v21.2.Core" />
-    <Reference Include="DevExpress.TreeMap.v21.2.Core" />
-    <Reference Include="DevExpress.Data.Desktop.v21.2" />
-    <Reference Include="DevExpress.Utils.v21.2" />
-    <Reference Include="DevExpress.Utils.v21.2.UI" />
-    <Reference Include="DevExpress.Xpo.v21.2" />
-    <Reference Include="DevExpress.XtraBars.v21.2" />
-    <Reference Include="DevExpress.XtraCharts.v21.2" />
-    <Reference Include="DevExpress.XtraCharts.v21.2.UI" />
-    <Reference Include="DevExpress.XtraCharts.v21.2.Wizard" />
-    <Reference Include="DevExpress.XtraEditors.v21.2" />
-    <Reference Include="DevExpress.XtraGauges.v21.2.Core" />
-    <Reference Include="DevExpress.XtraGauges.v21.2.Presets" />
-    <Reference Include="DevExpress.XtraGauges.v21.2.Win" />
-    <Reference Include="DevExpress.XtraGrid.v21.2" />
-    <Reference Include="DevExpress.XtraLayout.v21.2" />
-    <Reference Include="DevExpress.XtraMap.v21.2" />
-    <Reference Include="DevExpress.XtraPivotGrid.v21.2" />
-    <Reference Include="DevExpress.XtraPrinting.v21.2" />
-    <Reference Include="DevExpress.CodeParser.v21.2" />
-    <Reference Include="DevExpress.XtraReports.v21.2" />
-    <Reference Include="DevExpress.XtraRichEdit.v21.2" />
-    <Reference Include="DevExpress.XtraTreeList.v21.2" />
-    <Reference Include="DevExpress.XtraTreeMap.v21.2.UI" />
-    <Reference Include="DevExpress.XtraTreeMap.v21.2" />
+    <Reference Include="DevExpress.Charts.v23.1.Core" />
+    <Reference Include="DevExpress.Dashboard.v23.1.Core" />
+    <Reference Include="DevExpress.Dashboard.v23.1.Win" />
+    <Reference Include="DevExpress.Data.v23.1, Version=23.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Data.23.1.6\lib\net452\DevExpress.Data.v23.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Drawing.v23.1" />
+    <Reference Include="DevExpress.DataAccess.v23.1" />
+    <Reference Include="DevExpress.DataAccess.v23.1.UI" />
+    <Reference Include="DevExpress.Map.v23.1.Core" />
+    <Reference Include="DevExpress.Office.v23.1.Core" />
+    <Reference Include="DevExpress.PivotGrid.v23.1.Core" />
+    <Reference Include="DevExpress.Printing.v23.1.Core" />
+    <Reference Include="DevExpress.RichEdit.v23.1.Core" />
+    <Reference Include="DevExpress.Sparkline.v23.1.Core" />
+    <Reference Include="DevExpress.TreeMap.v23.1.Core" />
+    <Reference Include="DevExpress.Data.Desktop.v23.1" />
+    <Reference Include="DevExpress.Utils.v23.1" />
+    <Reference Include="DevExpress.Utils.v23.1.UI" />
+    <Reference Include="DevExpress.Xpo.v23.1, Version=23.1.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DevExpress.Xpo.23.1.6\lib\net452\DevExpress.Xpo.v23.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v23.1" />
+    <Reference Include="DevExpress.XtraCharts.v23.1" />
+    <Reference Include="DevExpress.XtraCharts.v23.1.UI" />
+    <Reference Include="DevExpress.XtraCharts.v23.1.Wizard" />
+    <Reference Include="DevExpress.XtraEditors.v23.1" />
+    <Reference Include="DevExpress.XtraGauges.v23.1.Core" />
+    <Reference Include="DevExpress.XtraGauges.v23.1.Presets" />
+    <Reference Include="DevExpress.XtraGauges.v23.1.Win" />
+    <Reference Include="DevExpress.XtraGrid.v23.1" />
+    <Reference Include="DevExpress.XtraLayout.v23.1" />
+    <Reference Include="DevExpress.XtraMap.v23.1" />
+    <Reference Include="DevExpress.XtraPivotGrid.v23.1" />
+    <Reference Include="DevExpress.XtraPrinting.v23.1" />
+    <Reference Include="DevExpress.CodeParser.v23.1" />
+    <Reference Include="DevExpress.XtraReports.v23.1" />
+    <Reference Include="DevExpress.XtraRichEdit.v23.1" />
+    <Reference Include="DevExpress.XtraTreeList.v23.1" />
+    <Reference Include="DevExpress.XtraTreeMap.v23.1.UI" />
+    <Reference Include="DevExpress.XtraTreeMap.v23.1" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -105,6 +110,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MyCustomDataClass.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -120,6 +126,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -144,6 +151,11 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="StoredProcedure.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
